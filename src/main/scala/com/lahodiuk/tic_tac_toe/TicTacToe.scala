@@ -24,11 +24,14 @@ class TicTacToe(playerOne: BestMoveFinder[TicTacToeState],
     new TicTacToeState(DIMENSION, DIMENSION)
   
   def play = {
+    var moveNumber = 0
     while(!game.isGameOver) {
+      println(s"Player ${moveNumber % 2 + 1} makes move:")
       val player = players.head
       game = player.move(game)
       println(display(game))
       players = players.tail :+ player
+      moveNumber += 1
     }
     if(game.playerOneWin) println("Player One win!")
     else if(game.playerTwoWin) println("Player Two win!")
